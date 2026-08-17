@@ -1,1 +1,519 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>من ميدو إلى لي لي ❤️</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    font-family:Tahoma,Arial,sans-serif;
+    background:linear-gradient(135deg,#fff5f9,#ffd8e7,#f7b4cc);
+    color:#68243f;
+    overflow-x:hidden;
+}
+
+/* القلوب المتحركة */
+.hearts{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:1;
+}
+
+.heart{
+    position:absolute;
+    bottom:-70px;
+    font-size:28px;
+    opacity:.6;
+    animation:floatHeart 10s linear infinite;
+}
+
+.heart:nth-child(1){left:8%;animation-delay:0s}
+.heart:nth-child(2){left:25%;animation-delay:2s}
+.heart:nth-child(3){left:45%;animation-delay:4s}
+.heart:nth-child(4){left:65%;animation-delay:1s}
+.heart:nth-child(5){left:82%;animation-delay:3s}
+.heart:nth-child(6){left:94%;animation-delay:6s}
+
+@keyframes floatHeart{
+    0%{
+        transform:translateY(0) rotate(0);
+        opacity:0;
+    }
+    15%{opacity:.7}
+    100%{
+        transform:translateY(-115vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* شاشة الباسورد */
+#lockScreen{
+    position:fixed;
+    inset:0;
+    z-index:999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:linear-gradient(135deg,#fff0f6,#ffd3e3,#f8b8ce);
+}
+
+.lockBox{
+    width:100%;
+    max-width:430px;
+    background:rgba(255,255,255,.96);
+    border-radius:35px;
+    padding:38px 24px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(100,20,55,.2);
+}
+
+.bigHeart{
+    font-size:75px;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.12)}
+}
+
+.lockBox h1{
+    color:#a52f5d;
+    font-size:30px;
+    margin:15px 0;
+}
+
+.lockBox p{
+    font-size:19px;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+#password{
+    width:100%;
+    height:62px;
+    border:3px solid #dca0b8;
+    border-radius:20px;
+    outline:none;
+    text-align:center;
+    font-size:28px;
+    letter-spacing:10px;
+    color:#7d294c;
+}
+
+.openBtn{
+    width:100%;
+    height:62px;
+    margin-top:18px;
+    border:0;
+    border-radius:20px;
+    background:#ad3d68;
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+}
+
+#error{
+    display:none;
+    color:#d52c55;
+    margin-top:12px;
+    font-size:17px;
+}
+
+/* المحتوى */
+#mainContent{
+    display:none;
+    position:relative;
+    z-index:2;
+    max-width:850px;
+    margin:auto;
+    padding:30px 14px 80px;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:28px;
+}
+
+.header .from{
+    font-size:20px;
+    margin-bottom:8px;
+}
+
+.header h1{
+    font-size:38px;
+    color:#9f315c;
+    margin-bottom:8px;
+}
+
+.header .sub{
+    font-size:22px;
+}
+
+/* الصور */
+.gallery{
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+}
+
+.photo{
+    background:white;
+    padding:11px;
+    border-radius:28px;
+    box-shadow:0 15px 35px rgba(90,20,50,.18);
+    perspective:1000px;
+    animation:showPhoto 1s ease both;
+}
+
+.photo:nth-child(2){animation-delay:.3s}
+.photo:nth-child(3){animation-delay:.6s}
+.photo:nth-child(4){animation-delay:.9s}
+.photo:nth-child(5){animation-delay:1.2s}
+
+.photo img{
+    width:100%;
+    display:block;
+    border-radius:20px;
+    object-fit:cover;
+    transition:transform 1s ease;
+}
+
+/* قلبة الصورة */
+.photo:hover img{
+    transform:rotateY(180deg);
+}
+
+@keyframes showPhoto{
+    from{
+        opacity:0;
+        transform:translateY(50px) rotate(-3deg);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) rotate(0);
+    }
+}
+
+/* الرسالة تحت الصور */
+.message{
+    margin-top:30px;
+    background:rgba(255,255,255,.94);
+    border-radius:30px;
+    padding:30px 20px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(90,20,50,.12);
+}
+
+.message h2{
+    color:#a52f5d;
+    font-size:31px;
+    margin-bottom:22px;
+}
+
+.message p{
+    font-size:21px;
+    line-height:2.1;
+    margin-bottom:18px;
+}
+
+.highlight{
+    color:#a52f5d;
+    font-size:27px !important;
+    font-weight:bold;
+}
+
+.final{
+    color:#a52f5d;
+    font-size:29px !important;
+    font-weight:bold;
+    margin-top:25px;
+}
+
+/* زر الموسيقى */
+.musicButton{
+    position:fixed;
+    left:18px;
+    bottom:18px;
+    z-index:100;
+    width:60px;
+    height:60px;
+    border:0;
+    border-radius:50%;
+    background:#ad3d68;
+    color:white;
+    font-size:25px;
+    box-shadow:0 8px 25px rgba(90,20,50,.3);
+}
+
+/* الموبايل */
+@media(max-width:600px){
+
+    .header h1{
+        font-size:30px;
+    }
+
+    .header .sub{
+        font-size:19px;
+    }
+
+    .message{
+        padding:25px 15px;
+    }
+
+    .message h2{
+        font-size:27px;
+    }
+
+    .message p{
+        font-size:19px;
+        line-height:2;
+    }
+
+    .highlight{
+        font-size:24px !important;
+    }
+
+    .final{
+        font-size:26px !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- قلوب -->
+<div class="hearts">
+    <div class="heart">❤️</div>
+    <div class="heart">💕</div>
+    <div class="heart">💗</div>
+    <div class="heart">❤️</div>
+    <div class="heart">💖</div>
+    <div class="heart">💕</div>
+</div>
+
+
+<!-- شاشة الباسورد -->
+<div id="lockScreen">
+
+    <div class="lockBox">
+
+        <div class="bigHeart">💖</div>
+
+        <h1>من ميدو إلى لي لي ❤️</h1>
+
+        <p>
+            أحلى بنوته في الدنيا 👑💕
+            <br>
+            اكتبي الباسورد عشان تشوفي المفاجأة ❤️
+        </p>
+
+        <input
+            id="password"
+            type="password"
+            maxlength="4"
+            inputmode="numeric"
+            placeholder="••••"
+        >
+
+        <button class="openBtn" onclick="openMessage()">
+            ❤️ افتحي رسالتك ❤️
+        </button>
+
+        <div id="error">
+            الباسورد غلط يا لي لي 🥺❤️
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- الصفحة -->
+<main id="mainContent">
+
+    <div class="header">
+
+        <div class="from">
+            ❤️ From Medo ❤️
+        </div>
+
+        <h1>
+            إلى لي لي
+        </h1>
+
+        <div class="sub">
+            أحلى بنوته في الدنيا 👑💕
+        </div>
+
+    </div>
+
+
+    <!-- الصور الأول -->
+    <div class="gallery">
+
+        <div class="photo">
+            <img src="Lili2.jpg" alt="لي لي ❤️">
+        </div>
+
+        <div class="photo">
+            <img src="Lili3.jpg" alt="لي لي ❤️">
+        </div>
+
+        <div class="photo">
+            <img src="lili5.jpg" alt="لي لي ❤️">
+        </div>
+
+        <div class="photo">
+            <img src="Lili6.jpg" alt="لي لي ❤️">
+        </div>
+
+        <div class="photo">
+            <img src="Lili7.jpg" alt="لي لي ❤️">
+        </div>
+
+    </div>
+
+
+    <!-- الكلام تحت الصور -->
+    <section class="message">
+
+        <h2>
+            💕 لي لي بنتي وحبيبتي 💕
+        </h2>
+
+        <p>
+            إنتِ مش بس بنتي، إنتِ حتة من قلبي وروحي،
+            وأجمل نعمة ربنا رزقني بيها. ❤️
+        </p>
+
+        <p>
+            من يوم ما جيتي الدنيا وإنتِ منوّرة حياتي،
+            وضحكتك قادرة تغيّر يومي كله. 🥹❤️
+        </p>
+
+        <p>
+            يا لي لي، نفسي أشوفك دايمًا مبسوطة وناجحة
+            ومحققة كل اللي نفسك فيه،
+            وأفضل جنبك في كل خطوة في حياتك. ❤️
+        </p>
+
+        <p>
+            مهما تكبري، هتفضلي في عيني
+            بنتي الصغيرة اللي قلبي بيجري عليها من غير تفكير. 🥰
+        </p>
+
+        <p>
+            ربنا يحميكي من كل شر،
+            ويفرح قلبي بيكي،
+            ويكتبلك أيام حلوة على قد قلبك الجميل. ❤️
+        </p>
+
+        <p class="highlight">
+            بحبك يا لي لي حب ملوش آخر ❤️👑
+        </p>
+
+        <p class="final">
+            إنتِ دايمًا وأبدًا
+            <br>
+            أحلى بنت في الدنيا
+            <br>
+            وأغلى حاجة عند بابا ❤️
+        </p>
+
+        <p style="margin-top:30px;font-size:20px;">
+            ❤️ من ميدو إلى لي لي ❤️
+        </p>
+
+    </section>
+
+</main>
+
+
+<!-- الأغنية -->
+<audio id="music" loop>
+    <source src="lili1song.mp3" type="audio/mpeg">
+</audio>
+
+<button
+    id="musicButton"
+    class="musicButton"
+    onclick="toggleMusic()"
+    style="display:none;">
+    🔊
+</button>
+
+
+<script>
+
+function openMessage(){
+
+    const pass =
+        document.getElementById("password").value;
+
+    const error =
+        document.getElementById("error");
+
+    const lock =
+        document.getElementById("lockScreen");
+
+    const content =
+        document.getElementById("mainContent");
+
+    const music =
+        document.getElementById("music");
+
+    const musicButton =
+        document.getElementById("musicButton");
+
+
+    if(pass === "2017"){
+
+        error.style.display = "none";
+
+        lock.style.display = "none";
+
+        content.style.display = "block";
+
+        musicButton.style.display = "block";
+
+        /* تشغيل الأغنية مباشرة بعد إدخال الباسورد */
+        music.volume = 0.8;
+
+        music.play().catch(function(){
+
+            musicButton.innerHTML = "▶️";
+
+        });
+
+        window.scrollTo(0,0);
+
+    }else{
+
+        error.style.display = "block";
+
+        document.getElementById("password").value = "";
+
+    }
+
+}
+
+
+/* فتح بالباسورد عن طريق Enter */
+document.getElementById("password")
+.addEventListener("keydown",function(e){
+
+    if(e.key === "Enter"){
