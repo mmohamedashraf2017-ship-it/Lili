@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -15,42 +15,44 @@
 
 body{
     min-height:100vh;
-    font-family:Tahoma,Arial,sans-serif;
-    background:linear-gradient(135deg,#fff5f9,#ffd8e7,#f7b4cc);
-    color:#68243f;
+    font-family:Tahoma, Arial, sans-serif;
+    background:linear-gradient(135deg,#ffdce9,#fff5f9,#ffc7dc);
+    color:#702546;
     overflow-x:hidden;
 }
 
-/* القلوب المتحركة */
+/* القلوب في الخلفية */
 .hearts{
     position:fixed;
     inset:0;
     overflow:hidden;
     pointer-events:none;
-    z-index:1;
+    z-index:0;
 }
 
 .heart{
     position:absolute;
-    bottom:-70px;
+    bottom:-60px;
     font-size:28px;
-    opacity:.6;
-    animation:floatHeart 10s linear infinite;
+    opacity:.5;
+    animation:float 9s linear infinite;
 }
 
-.heart:nth-child(1){left:8%;animation-delay:0s}
-.heart:nth-child(2){left:25%;animation-delay:2s}
-.heart:nth-child(3){left:45%;animation-delay:4s}
-.heart:nth-child(4){left:65%;animation-delay:1s}
-.heart:nth-child(5){left:82%;animation-delay:3s}
-.heart:nth-child(6){left:94%;animation-delay:6s}
+.heart:nth-child(1){left:8%;animation-delay:0s;}
+.heart:nth-child(2){left:25%;animation-delay:2s;}
+.heart:nth-child(3){left:45%;animation-delay:4s;}
+.heart:nth-child(4){left:65%;animation-delay:1s;}
+.heart:nth-child(5){left:82%;animation-delay:3s;}
+.heart:nth-child(6){left:92%;animation-delay:5s;}
 
-@keyframes floatHeart{
+@keyframes float{
     0%{
-        transform:translateY(0) rotate(0);
+        transform:translateY(0) rotate(0deg);
         opacity:0;
     }
-    15%{opacity:.7}
+    15%{
+        opacity:.5;
+    }
     100%{
         transform:translateY(-115vh) rotate(360deg);
         opacity:0;
@@ -61,233 +63,285 @@ body{
 #lockScreen{
     position:fixed;
     inset:0;
-    z-index:999;
+    z-index:1000;
     display:flex;
     justify-content:center;
     align-items:center;
     padding:20px;
-    background:linear-gradient(135deg,#fff0f6,#ffd3e3,#f8b8ce);
+    background:linear-gradient(135deg,#ffdce9,#ffc5da);
 }
 
 .lockBox{
     width:100%;
-    max-width:430px;
+    max-width:620px;
     background:rgba(255,255,255,.96);
     border-radius:35px;
-    padding:38px 24px;
+    padding:45px 28px;
     text-align:center;
-    box-shadow:0 20px 60px rgba(100,20,55,.2);
+    box-shadow:0 20px 60px rgba(120,30,70,.18);
 }
 
-.bigHeart{
-    font-size:75px;
+.lockHeart{
+    font-size:90px;
     animation:pulse 1.5s infinite;
+    margin-bottom:15px;
 }
 
 @keyframes pulse{
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.12)}
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.12);}
 }
 
-.lockBox h1{
-    color:#a52f5d;
-    font-size:30px;
-    margin:15px 0;
+.lockTitle{
+    font-size:42px;
+    font-weight:bold;
+    margin-bottom:18px;
 }
 
-.lockBox p{
-    font-size:19px;
+.lockSubtitle{
+    font-size:26px;
+    margin-bottom:12px;
+}
+
+.lockText{
+    font-size:22px;
+    margin:20px 0;
     line-height:1.8;
-    margin-bottom:20px;
 }
 
 #password{
     width:100%;
-    height:62px;
-    border:3px solid #dca0b8;
-    border-radius:20px;
+    height:75px;
+    border:3px solid #d99ab5;
+    border-radius:25px;
     outline:none;
     text-align:center;
-    font-size:28px;
-    letter-spacing:10px;
-    color:#7d294c;
+    font-size:35px;
+    color:#702546;
+    letter-spacing:12px;
+    background:#fff;
+}
+
+#password:focus{
+    border-color:#b33f68;
 }
 
 .openBtn{
     width:100%;
-    height:62px;
-    margin-top:18px;
-    border:0;
-    border-radius:20px;
-    background:#ad3d68;
+    margin-top:25px;
+    height:75px;
+    border:none;
+    border-radius:25px;
+    background:#b23d68;
     color:white;
-    font-size:22px;
+    font-size:27px;
     font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
 }
 
-#error{
+.openBtn:active{
+    transform:scale(.97);
+}
+
+.error{
+    color:#d12d55;
+    font-size:20px;
+    margin-top:15px;
     display:none;
-    color:#d52c55;
-    margin-top:12px;
-    font-size:17px;
 }
 
 /* المحتوى */
-#mainContent{
+#content{
     display:none;
     position:relative;
     z-index:2;
     max-width:850px;
     margin:auto;
-    padding:30px 14px 80px;
+    padding:35px 18px 80px;
 }
 
 .header{
     text-align:center;
-    margin-bottom:28px;
+    margin-bottom:35px;
 }
 
-.header .from{
-    font-size:20px;
-    margin-bottom:8px;
+.headerHeart{
+    font-size:70px;
+    animation:pulse 1.8s infinite;
 }
 
 .header h1{
-    font-size:38px;
-    color:#9f315c;
-    margin-bottom:8px;
+    font-size:42px;
+    margin-top:10px;
+    color:#9d315c;
 }
 
-.header .sub{
-    font-size:22px;
+.header p{
+    font-size:24px;
+    margin-top:10px;
 }
 
 /* الصور */
 .gallery{
     display:flex;
     flex-direction:column;
-    gap:28px;
+    gap:45px;
 }
 
-.photo{
-    background:white;
-    padding:11px;
-    border-radius:28px;
-    box-shadow:0 15px 35px rgba(90,20,50,.18);
-    perspective:1000px;
-    animation:showPhoto 1s ease both;
+.photoCard{
+    background:rgba(255,255,255,.95);
+    border-radius:30px;
+    padding:14px;
+    box-shadow:0 15px 40px rgba(100,30,60,.15);
+    opacity:0;
+    transform:translateY(60px) scale(.94);
+    animation:showCard 1s ease forwards;
 }
 
-.photo:nth-child(2){animation-delay:.3s}
-.photo:nth-child(3){animation-delay:.6s}
-.photo:nth-child(4){animation-delay:.9s}
-.photo:nth-child(5){animation-delay:1.2s}
+.photoCard:nth-child(1){animation-delay:.2s;}
+.photoCard:nth-child(2){animation-delay:.7s;}
+.photoCard:nth-child(3){animation-delay:1.2s;}
+.photoCard:nth-child(4){animation-delay:1.7s;}
+.photoCard:nth-child(5){animation-delay:2.2s;}
 
-.photo img{
-    width:100%;
-    display:block;
-    border-radius:20px;
-    object-fit:cover;
-    transition:transform 1s ease;
-}
-
-/* قلبة الصورة */
-.photo:hover img{
-    transform:rotateY(180deg);
-}
-
-@keyframes showPhoto{
-    from{
-        opacity:0;
-        transform:translateY(50px) rotate(-3deg);
-    }
+@keyframes showCard{
     to{
         opacity:1;
-        transform:translateY(0) rotate(0);
+        transform:translateY(0) scale(1);
     }
 }
 
-/* الرسالة تحت الصور */
+.photoCard img{
+    display:block;
+    width:100%;
+    max-height:650px;
+    object-fit:cover;
+    border-radius:22px;
+}
+
+/* الكلام تحت الصور */
 .message{
-    margin-top:30px;
-    background:rgba(255,255,255,.94);
-    border-radius:30px;
-    padding:30px 20px;
     text-align:center;
-    box-shadow:0 15px 35px rgba(90,20,50,.12);
+    font-size:25px;
+    line-height:2;
+    padding:25px 12px 10px;
 }
 
-.message h2{
-    color:#a52f5d;
-    font-size:31px;
-    margin-bottom:22px;
+.message .big{
+    display:block;
+    color:#a52f5c;
+    font-size:30px;
+    font-weight:bold;
+    margin-bottom:8px;
 }
 
-.message p{
-    font-size:21px;
+.finalMessage{
+    margin-top:45px;
+    background:rgba(255,255,255,.95);
+    border-radius:30px;
+    padding:35px 25px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(100,30,60,.15);
+    font-size:25px;
     line-height:2.1;
-    margin-bottom:18px;
 }
 
-.highlight{
-    color:#a52f5d;
-    font-size:27px !important;
-    font-weight:bold;
+.finalMessage h2{
+    color:#a52f5c;
+    font-size:34px;
+    margin-bottom:20px;
 }
 
-.final{
-    color:#a52f5d;
-    font-size:29px !important;
-    font-weight:bold;
+.signature{
     margin-top:25px;
+    font-size:30px;
+    font-weight:bold;
+    color:#a52f5c;
 }
 
-/* زر الموسيقى */
+/* زر الأغنية */
 .musicButton{
     position:fixed;
-    left:18px;
-    bottom:18px;
-    z-index:100;
-    width:60px;
-    height:60px;
-    border:0;
+    left:20px;
+    bottom:20px;
+    width:65px;
+    height:65px;
     border-radius:50%;
-    background:#ad3d68;
+    border:none;
+    background:#b23d68;
     color:white;
-    font-size:25px;
-    box-shadow:0 8px 25px rgba(90,20,50,.3);
+    font-size:28px;
+    box-shadow:0 8px 25px rgba(100,20,50,.3);
+    z-index:500;
+    cursor:pointer;
 }
 
-/* الموبايل */
+/* موبايل */
 @media(max-width:600px){
 
-    .header h1{
+    .lockBox{
+        padding:35px 20px;
+        border-radius:30px;
+    }
+
+    .lockHeart{
+        font-size:75px;
+    }
+
+    .lockTitle{
+        font-size:32px;
+    }
+
+    .lockSubtitle{
+        font-size:22px;
+    }
+
+    .lockText{
+        font-size:20px;
+    }
+
+    #password{
+        height:68px;
         font-size:30px;
     }
 
-    .header .sub{
-        font-size:19px;
+    .openBtn{
+        height:68px;
+        font-size:24px;
+    }
+
+    .headerHeart{
+        font-size:60px;
+    }
+
+    .header h1{
+        font-size:32px;
+    }
+
+    .header p{
+        font-size:20px;
     }
 
     .message{
-        padding:25px 15px;
+        font-size:21px;
     }
 
-    .message h2{
-        font-size:27px;
+    .message .big{
+        font-size:26px;
     }
 
-    .message p{
-        font-size:19px;
-        line-height:2;
+    .finalMessage{
+        font-size:21px;
+        padding:28px 18px;
     }
 
-    .highlight{
-        font-size:24px !important;
+    .finalMessage h2{
+        font-size:28px;
     }
 
-    .final{
-        font-size:26px !important;
+    .signature{
+        font-size:25px;
     }
 }
 </style>
@@ -295,225 +349,271 @@ body{
 
 <body>
 
-<!-- قلوب -->
+<!-- القلوب -->
 <div class="hearts">
     <div class="heart">❤️</div>
     <div class="heart">💕</div>
     <div class="heart">💗</div>
-    <div class="heart">❤️</div>
     <div class="heart">💖</div>
+    <div class="heart">❤️</div>
     <div class="heart">💕</div>
 </div>
-
 
 <!-- شاشة الباسورد -->
 <div id="lockScreen">
 
     <div class="lockBox">
 
-        <div class="bigHeart">💖</div>
+        <div class="lockHeart">💖</div>
 
-        <h1>من ميدو إلى لي لي ❤️</h1>
+        <div class="lockTitle">
+            من ميدو إلى لي لي ❤️
+        </div>
 
-        <p>
-            أحلى بنوته في الدنيا 👑💕
-            <br>
+        <div class="lockSubtitle">
+            👑 أحلى بنوتة في الدنيا 💕
+        </div>
+
+        <div class="lockText">
             اكتبي الباسورد عشان تشوفي المفاجأة ❤️
-        </p>
+        </div>
 
         <input
             id="password"
             type="password"
-            maxlength="4"
             inputmode="numeric"
+            maxlength="4"
             placeholder="••••"
+            autocomplete="off"
         >
 
         <button class="openBtn" onclick="openMessage()">
             ❤️ افتحي رسالتك ❤️
         </button>
 
-        <div id="error">
-            الباسورد غلط يا لي لي 🥺❤️
+        <div id="error" class="error">
+            الباسورد غلط يا لي لي 😘 جربي تاني ❤️
         </div>
 
     </div>
 
 </div>
 
-
-<!-- الصفحة -->
-<main id="mainContent">
-
-    <div class="header">
-
-        <div class="from">
-            ❤️ From Medo ❤️
-        </div>
-
-        <h1>
-            إلى لي لي
-        </h1>
-
-        <div class="sub">
-            أحلى بنوته في الدنيا 👑💕
-        </div>
-
-    </div>
-
-
-    <!-- الصور الأول -->
-    <div class="gallery">
-
-        <div class="photo">
-            <img src="Lili2.jpg" alt="لي لي ❤️">
-        </div>
-
-        <div class="photo">
-            <img src="Lili3.jpg" alt="لي لي ❤️">
-        </div>
-
-        <div class="photo">
-            <img src="lili5.jpg" alt="لي لي ❤️">
-        </div>
-
-        <div class="photo">
-            <img src="Lili6.jpg" alt="لي لي ❤️">
-        </div>
-
-        <div class="photo">
-            <img src="Lili7.jpg" alt="لي لي ❤️">
-        </div>
-
-    </div>
-
-
-    <!-- الكلام تحت الصور -->
-    <section class="message">
-
-        <h2>
-            💕 لي لي بنتي وحبيبتي 💕
-        </h2>
-
-        <p>
-            إنتِ مش بس بنتي، إنتِ حتة من قلبي وروحي،
-            وأجمل نعمة ربنا رزقني بيها. ❤️
-        </p>
-
-        <p>
-            من يوم ما جيتي الدنيا وإنتِ منوّرة حياتي،
-            وضحكتك قادرة تغيّر يومي كله. 🥹❤️
-        </p>
-
-        <p>
-            يا لي لي، نفسي أشوفك دايمًا مبسوطة وناجحة
-            ومحققة كل اللي نفسك فيه،
-            وأفضل جنبك في كل خطوة في حياتك. ❤️
-        </p>
-
-        <p>
-            مهما تكبري، هتفضلي في عيني
-            بنتي الصغيرة اللي قلبي بيجري عليها من غير تفكير. 🥰
-        </p>
-
-        <p>
-            ربنا يحميكي من كل شر،
-            ويفرح قلبي بيكي،
-            ويكتبلك أيام حلوة على قد قلبك الجميل. ❤️
-        </p>
-
-        <p class="highlight">
-            بحبك يا لي لي حب ملوش آخر ❤️👑
-        </p>
-
-        <p class="final">
-            إنتِ دايمًا وأبدًا
-            <br>
-            أحلى بنت في الدنيا
-            <br>
-            وأغلى حاجة عند بابا ❤️
-        </p>
-
-        <p style="margin-top:30px;font-size:20px;">
-            ❤️ من ميدو إلى لي لي ❤️
-        </p>
-
-    </section>
-
-</main>
-
-
 <!-- الأغنية -->
-<audio id="music" loop>
+<audio id="song" loop preload="auto">
     <source src="lili1song.mp3" type="audio/mpeg">
 </audio>
 
-<button
-    id="musicButton"
-    class="musicButton"
-    onclick="toggleMusic()"
-    style="display:none;">
+<!-- المحتوى -->
+<div id="content">
+
+    <div class="header">
+
+        <div class="headerHeart">💖</div>
+
+        <h1>
+            من ميدو إلى لي لي ❤️
+        </h1>
+
+        <p>
+            لأحلى بنوتة وأجمل هدية في الدنيا 👑💕
+        </p>
+
+    </div>
+
+    <div class="gallery">
+
+        <!-- الصورة الأولى -->
+        <div class="photoCard">
+
+            <img src="Lili2.jpg" alt="لي لي">
+
+            <div class="message">
+                <span class="big">❤️ يا لي لي يا حبيبتي ❤️</span>
+
+                إنتِ مش بس بنتي...<br>
+                إنتِ حتة من قلبي وروحي وكل دنيتي. 💕
+            </div>
+
+        </div>
+
+        <!-- الصورة الثانية -->
+        <div class="photoCard">
+
+            <img src="Lili3.jpg" alt="لي لي">
+
+            <div class="message">
+
+                <span class="big">👑 أحلى بنوتة في الدنيا 👑</span>
+
+                من يوم ما جيتي حياتي وإنتِ منورالي الدنيا كلها.<br>
+                ضحكتك لوحدها قادرة تخليني أنسى أي تعب. ❤️
+            </div>
+
+        </div>
+
+        <!-- الصورة الثالثة -->
+        <div class="photoCard">
+
+            <img src="Lili5.jpg" alt="لي لي">
+
+            <div class="message">
+
+                <span class="big">💕 يا أجمل حاجة حصلتلي 💕</span>
+
+                نفسي أشوفك دايمًا مبسوطة وناجحة وفرحانة،<br>
+                وأفضل جنبك وأشوفك بتكبري قدام عيني يوم ورا يوم. ❤️
+            </div>
+
+        </div>
+
+        <!-- الصورة الرابعة -->
+        <div class="photoCard">
+
+            <img src="Lili6.jpg" alt="لي لي">
+
+            <div class="message">
+
+                <span class="big">🥰 لي لي بتاعة ميدو ❤️</span>
+
+                مهما كبرتي ومهما الأيام عدت،<br>
+                هتفضلي دايمًا بنوتتي الصغيرة اللي قلبي متعلق بيها. 💗
+            </div>
+
+        </div>
+
+        <!-- الصورة الخامسة -->
+        <div class="photoCard">
+
+            <img src="Lili7.jpg" alt="لي لي">
+
+            <div class="message">
+
+                <span class="big">❤️ ربنا يحفظك يا لي لي ❤️</span>
+
+                ويحميكي من كل شر، ويفرح قلبي بيكي دايمًا،<br>
+                ويكتبلك في كل خطوة في حياتك الخير والسعادة. 🤲💕
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- الرسالة الأخيرة -->
+    <div class="finalMessage">
+
+        <h2>
+            💕 رسالة من ميدو للي لي 💕
+        </h2>
+
+        يا لي لي يا أحلى بنوتة في الدنيا ❤️<br><br>
+
+        عايزك تعرفي إنك أغلى حاجة عندي،<br>
+        وإن وجودك في حياتي نعمة كبيرة بحمد ربنا عليها كل يوم. 💕<br><br>
+
+        مهما الدنيا كبرت ومهما السنين عدت،<br>
+        هتفضلي دايمًا حبيبتي وبنوتي الصغيرة،<br>
+        وهفضل فخور بيكي وبكل حاجة حلوة بتعمليها. ❤️<br><br>
+
+        نفسي أشوفك دايمًا ناجحة وفرحانة،<br>
+        وأفضل جنبك في كل خطوة من خطوات حياتك. 👑<br><br>
+
+        ربنا يخليكي ليا ويحفظك من كل شر،<br>
+        ويحققلك كل اللي نفسك فيه. 🤲❤️
+
+        <div class="signature">
+            ❤️ بحبك يا لي لي ❤️<br>
+            من ميدو إلى أحلى بنوتة في الدنيا 💕
+        </div>
+
+    </div>
+
+</div>
+
+<!-- زر التحكم في الأغنية -->
+<button class="musicButton" id="musicButton" onclick="toggleMusic()">
     🔊
 </button>
 
-
 <script>
 
+/* الباسورد */
+const CORRECT_PASSWORD = "2017";
+
+/* فتح الرسالة */
 function openMessage(){
 
-    const pass =
-        document.getElementById("password").value;
+    const input = document.getElementById("password");
+    const error = document.getElementById("error");
+    const lockScreen = document.getElementById("lockScreen");
+    const content = document.getElementById("content");
+    const song = document.getElementById("song");
 
-    const error =
-        document.getElementById("error");
-
-    const lock =
-        document.getElementById("lockScreen");
-
-    const content =
-        document.getElementById("mainContent");
-
-    const music =
-        document.getElementById("music");
-
-    const musicButton =
-        document.getElementById("musicButton");
-
-
-    if(pass === "2017"){
+    if(input.value === CORRECT_PASSWORD){
 
         error.style.display = "none";
 
-        lock.style.display = "none";
+        /* إخفاء شاشة الباسورد */
+        lockScreen.style.display = "none";
 
+        /* إظهار الرسالة */
         content.style.display = "block";
 
-        musicButton.style.display = "block";
+        /* تشغيل الأغنية */
+        song.currentTime = 0;
 
-        /* تشغيل الأغنية مباشرة بعد إدخال الباسورد */
-        music.volume = 0.8;
-
-        music.play().catch(function(){
-
-            musicButton.innerHTML = "▶️";
-
+        song.play().catch(function(){
+            /* بعض المتصفحات تمنع التشغيل التلقائي،
+               لكن الضغط على زر الفتح يعتبر تفاعلًا من المستخدم */
         });
 
-        window.scrollTo(0,0);
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
 
     }else{
 
         error.style.display = "block";
 
-        document.getElementById("password").value = "";
+        input.value = "";
+
+        input.focus();
+    }
+}
+
+/* تشغيل الباسورد بزر Enter */
+document.getElementById("password").addEventListener("keydown",function(event){
+
+    if(event.key === "Enter"){
+        openMessage();
+    }
+
+});
+
+/* التحكم في الأغنية */
+function toggleMusic(){
+
+    const song = document.getElementById("song");
+    const button = document.getElementById("musicButton");
+
+    if(song.paused){
+
+        song.play();
+
+        button.textContent = "🔊";
+
+    }else{
+
+        song.pause();
+
+        button.textContent = "🔇";
 
     }
 
 }
 
+</script>
 
-/* فتح بالباسورد عن طريق Enter */
-document.getElementById("password")
-.addEventListener("keydown",function(e){
-
-    if(e.key === "Enter"){
+</body>
+</html>
